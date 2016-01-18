@@ -1,0 +1,2 @@
+def Drink():
+    print('drink')
