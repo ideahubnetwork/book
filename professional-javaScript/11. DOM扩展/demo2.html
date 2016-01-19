@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element Traversal API</title>
+</head>
+<body>
+    <ul class="list">
+        <li class="item">item 1</li>
+        <li class="item">item 2</li>
+        <li class="item">item 3</li>
+    </ul>
+    <script>
+    var list = document.getElementsByClassName('list').item(0);
+
+    // demo1 
+    // 使用 childNodes 遍历子节点，通过判断节点类型遍历子元素
+    for (var child=list.firstChild; child!=null; child=child.nextSibling) {
+        if (child.nodeType === 1) {
+            console.log('demo1:', child);
+        }
+    }
+
+    // demo2
+    // 使用 Element Traversal API 来遍历子元素
+    for (var child=list.firstElementChild; child!=null; child=child.nextElementSibling) {
+        console.log('demo2:', child);
+    }
+
+    // demo3
+    // 使用 children 返回所有子元素
+    var items = list.children;
+    for (var i=0, len=items.length; i<len; i++) {
+        console.log('demo3:', items[i]);
+    }
+
+    // demo4
+    // 遍历文档各个标签的个数(以下使用ES6)
+    var obj = {};
+    var elements = document.getElementsByTagName('*');
+    for (var i=0, len=elements.length; i<len; i++) {
+        var tag = elements[i].tagName;
+        obj[tag] = tag in obj? obj[tag] + 1: 1
+    }
+    console.log('demo4:', obj);
+</script>
+</body>
+</html>

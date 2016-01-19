@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Visibility API</title>
+</head>
+<body>
+    <script>
+    // edge, ie11 的visibility的属性值也变为hidden, visible, prerender三种。
+    console.log(document.hidden);
+    console.log(document.visibilityState);
+    console.log(document.activeElement);
+
+    document.addEventListener('visibilitychange', function(event) {
+        console.log(document.activeElement);
+        console.log(document.hasFocus());
+    });
+    </script>
+</body>
+</html>

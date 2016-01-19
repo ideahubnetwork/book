@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation API</title>
+</head>
+<body>
+    <h1>Geolocation API</h1>
+    <script>
+    navigator.geolocation.getCurrentPosition(function(pos) {
+        console.log('latitude:', pos.coords.latitude);
+        console.log('longtitude:', pos.coords.longitude);
+        console.log('accuracy:', pos.coords.accuracy);
+    }, function(error) {
+        console.log(error);
+    }, {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 1000000
+    });
+
+    var watchId = navigator.geolocation.watchPosition(function(pos) {
+        console.log(pos);
+    });
+
+    clearWatch(watchId)
+    </script>
+</body>
+</html>

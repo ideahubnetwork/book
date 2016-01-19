@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>insertBefore insertAfter</title>
+</head>
+<body>
+    <h1>insertBefore & insertAfter</h1>
+    <hr>
+    <div class="list">
+        <div class="item">item</div>
+        <div class="item">item</div>
+        <div class="item">item</div>
+        <div class="item">item</div>
+    </div>
+    <script>
+    var list = document.getElementsByClassName('list')[0];
+    // 本元素前
+    list.insertAdjacentHTML('beforebegin', '<h3>hello, tian</h3>');
+
+    // 子元素中的首元素
+    list.insertAdjacentHTML('afterbegin', '<h3>hello, tian</h3>');
+
+    // 子元素中的尾元素
+    list.insertAdjacentHTML('afterend', '<h3>hello, tian</h3>');
+
+    // 本元素后
+    list.insertAdjacentHTML('beforeend', '<h3>hello, tian</h3>');
+    </script>
+</body>
+</html>

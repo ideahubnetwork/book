@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectors API</title>
+</head>
+<body>
+    <div class="content">
+        <div class="list">
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="list">
+            <div class="item" id="special"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+    <script>
+    // demo1: 
+    // querySelectorAll返回一个静态的NodeList, 而getElements返回动态的NodeList, 如下的例子会使浏览器崩溃
+    var items = document.querySelectorAll('div');
+    // var items = document.getElementsByTagName('div');
+    var body = document.body;
+    for (var i=0; i<items.length; i++) {
+        var div = document.createElement('div');
+        body.insertBefore(div, body.lastElementChild);
+    }
+
+    // demo2:
+    var special = document.getElementById('special');
+    function matchesSelector(element, selector) {
+        if (element.matchesSelector) {
+            return element.matchesSelector(selector);
+        } else if (element.msMatchesSelector) {
+            return element.msMatchesSelector(selector);
+        } else if (element.mozMatchesSelector) {
+            return element.mozMatchesSelector(selector);
+        } else if (element.webkitMatchesSelector) {
+            return element.webkitMatchesSelector(selector);
+        } else {
+            throw new Error('Not sopport matchesSelector');
+        }
+    }
+    console.log('example 2:', matchesSelector(special, '.item'));
+    </script>
+</body>
+</html>

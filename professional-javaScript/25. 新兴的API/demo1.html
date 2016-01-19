@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>requestAnimationFrame</title>
+    <style>
+    .progress {
+        position: relative;
+        height: 30px;
+        border-radius: 8px;
+        background-color: rgba(0,0,0,.7);
+        overflow: hidden;
+    }
+
+    .bar {
+        height: 100%;
+        background-color: orange;
+    }
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="bar"></div>
+    </div>
+    <p>requestAnimation 绘制动画，现代浏览器基本都已经支持。在Chrome与Edge中，基本都是17ms的间隔，比较平稳。而在firefox中，间隔差异较大，动画就不太顺滑。</p>
+    <script>
+    // requestAnimation 绘制动画。在Chrome与Edge中，基本都是17ms的间隔，比较平稳。
+    // 而在firefox中，间隔差异较大，动画就不太顺滑。
+    var bar = document.getElementsByClassName('bar')[0];
+    function draw() {
+        bar.style.width = +bar.style.width.slice(0, -1) + 1 + '%';
+
+        var drawTime = Date.now();
+        diff = drawTime - startTime;
+        console.log(diff);
+        startTime = drawTime;
+        if (bar.style.width != '100%') {
+            requestAnimationFrame(draw);
+        }
+    }
+
+    var startTime = Date.now();
+    requestAnimationFrame(draw);
+    </script>
+</body>
+</html>

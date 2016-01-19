@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML API</title>
+</head>
+<body>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3 id="test">view</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <h3>hello, world</h3>
+    <div id="div" data-name="testhaha">
+        <button id="btn">focus</button>
+    </div>
+    <div class="note">
+        <p>没有documentMode这个属性了</p>
+        <p>上一节遍历元素，程序有问题</p>
+    </div>
+    <script>
+    var item = document.getElementById('div');
+    item.classList.add('c1');
+    item.classList.remove('c1');
+    item.classList.toggle('c2');
+
+
+    var btn = document.getElementById('btn');
+    btn.focus()
+    console.log('activeElement:', document.activeElement);
+
+    console.log('readyState:', document.readyState);
+
+    console.log('charset:', document.charset);
+
+    console.log('dataset:', item.dataset.name);
+
+    console.log('innerHTML:', item.innerHTML);
+
+    console.log('outerHTML:', item.outerHTML);
+
+    console.log('docmode:', document.documentMode);
+
+    console.log('contains:', document.documentElement.contains(document.body));
+    console.log('compareDocumentPosition:', document.documentElement.compareDocumentPosition(document.body));
+    console.log('compareDocumentPosition:', btn.compareDocumentPosition(item));
+
+    var test = document.getElementById('test');
+    test.scrollIntoView(false);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File API</title>
+</head>
+<body>
+    <h1>File API</h1>
+    <input type="file" id="file">
+    <div class="info"></div>
+    <div class="progress"></div>
+
+    <script>
+    var info = document.getElementsByClassName('info')[0];
+    var progress = document.getElementsByClassName('progress')[0];
+    document.addEventListener('change', (event) => {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        info.textContent = `has accepted ${file.size} bit`;
+        if (/image/.test(file.type)) {
+            reader.readAsDataURL(file);
+        } else {
+            reader.readAsText(file);
+        }
+
+        reader.onprogress = (event) => {
+            progress.innerHTML = (event.loaded/event.total*100).toFixed() + '%';
+            console.log('progress:', event);
+        }
+
+        reader.onload = (event) => {
+            console.log('load:', event);
+        }
+    }, true);
+    </script>
+</body>
+</html>
