@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element and Attr</title>
+</head>
+<body>
+    <input type="text" name="username" onclick="test()" id="username" class="username">
+    <input type="text" name="username" onclick="test()" class="username" value="hahhahah">
+    <div id="header" class="header hahah" title="this is title" lang="zh-CN">
+        hello, tiantian
+    </div>
+    <div id="define" spec="hello, world">
+        自定义
+    </div>
+    <script>
+    var username = document.getElementById('username');
+    var header = document.getElementById('header');
+    var define = document.getElementById('define');
+
+    function test () {}
+
+    // demo 1:
+    // 对于input, username.value, username['value'] 能够获取表单输入的值,
+    // 如果在标签上设置 value 属性，则能通过 getAttribute 控制，否则不能
+    console.log('demo 1:', username.value);
+    console.log('demo 1:', username['value']);
+    console.log('demo 2:', username.getAttribute('value'));
+
+    // demo 2:
+    // 自定义的属性不能通过 [] 和 . 运算符访问，可以通过 getAttribute 访问
+    console.log('demo 2:', define.spec);
+    console.log('demo 2:', define.getAttribute('spec'))
+
+    // demo 3:
+    // 访问函数
+    // getAttribute 返回的是字符串，. 运算符返回函数
+    console.log('demo 3:', username.getAttribute('onclick'));
+    console.log('demo 3:', username.onclick)
+    </script>
+</body>
+</html>

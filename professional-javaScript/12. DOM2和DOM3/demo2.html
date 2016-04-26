@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式</title>
+    <style>
+    #div1 {
+        width: 500px;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1" style="background-color: #333; width: 300px; height: 500px"></div>
+    <script>
+    var div1 = document.getElementById('div1');
+
+    // demo 1(update):
+    // 在IE11上，可以支持 cssFloat, 在 Firefox 上，background 为综合属性，但是所有的浏览器都会把颜色值换位RGB值
+    // 在Firefox上，css.style 是 CSS2Properties 的实例，其它是 CSSStyleDeclaration 的实例
+    console.log('cssText:', div1.style.cssText)
+    console.log('cssFloat', div1.style.cssFloat)
+
+    // demo 2(update):
+    // 只有在 Firefox 上拥有 getPropertyCSSValue() 方法。
+    div1.style.removeProperty('width');
+
+    // demo 3:
+    console.log(window.getComputedStyle(div1));
+    </script>
+</body>
+</html>

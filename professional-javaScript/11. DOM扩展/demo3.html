@@ -58,12 +58,16 @@
 
     var btn = document.getElementById('btn');
     btn.focus()
+
+    // document.activeElement 获取焦点对象
     console.log('activeElement:', document.activeElement);
 
+    // document.readyState 有两种状态，一种是 loading，一种是 complete
     console.log('readyState:', document.readyState);
 
-    console.log('charset:', document.charset);
+    console.log('charset:', document.charset.toLowerCase());
 
+    // data 返回一个 DOMStringMap 对象
     console.log('dataset:', item.dataset.name);
 
     console.log('innerHTML:', item.innerHTML);
@@ -76,6 +80,7 @@
     console.log('compareDocumentPosition:', document.documentElement.compareDocumentPosition(document.body));
     console.log('compareDocumentPosition:', btn.compareDocumentPosition(item));
 
+    // true 或者不传参数代表与浏览器顶部视口平齐
     var test = document.getElementById('test');
     test.scrollIntoView(false);
     </script>

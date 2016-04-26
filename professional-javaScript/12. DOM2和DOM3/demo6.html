@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NodeIterator and TreeWalker</title>
+</head>
+<body>
+    <div class="list">
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, jing. </div>
+        <div class="item">hello, jing. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+        <div class="item">hello, world. </div>
+    </div>
+    <script>
+    function filter(node) {
+        return node.classList.contains('item') && node.textContent.includes('jing')? NodeFilter.FILTER_ACCEPT: NodeFilter.FILTER_SKIP
+    }
+    var iterator = document.createNodeIterator(document, NodeFilter.SHOW_ELEMENT, filter, false)
+
+    var node = iterator.nextNode()
+    while (node !== null) {
+        console.log(node);
+        node = iterator.nextNode();
+    }
+
+    var walker = document.createTreeWalker(document, NodeFilter.SHOW_ELEMENT, filter)
+    </script>
+</body>
+</html>

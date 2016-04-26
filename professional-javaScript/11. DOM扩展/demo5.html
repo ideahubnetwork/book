@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插入文本</title>
+</head>
+<body>
+    <div class="list">
+        hello, world
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+    </div>
+    <script>
+    var list = document.getElementsByClassName('list')[0];
+
+    // demo 1(update):
+    // Firefox已经支持 innerText 属性，innerText 会忽略空字符，而textContent不会忽略。
+    console.log('demo 1')
+    console.log(list.innerText);
+    console.log(list.textContent.trim())
+    </script>
+</body>
+</html>

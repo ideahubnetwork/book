@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node</title>
+    <style>
+    .circles {
+        overflow: hidden;
+    }
+
+    .circle {
+        width: 50px;
+        height: 50px;
+        float: left;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #48a;
+    }
+
+    .btn {
+        height: 30px;
+        width: 56px;
+        text-align: center;
+        cursor: pointer;
+        line-height: 30px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    </style>
+</head>
+<body>
+    <div class="circles">
+        <div class="circle">1</div>
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+        <div class="circle">4</div>
+        <div class="circle">5</div>
+        <div class="circle">6</div>
+        <div class="circle">7</div>
+        <div class="circle">8</div>
+        <div class="circle">9</div>
+        <div class="circle">10</div>
+        <div class="circle">11</div>
+        <div class="circle">12</div>
+    </div>
+    <button class="btn" onclick="go()">go</button>
+    <button class="btn" onclick="back()">back</button>
+    <button class="btn" onclick="replace()">replace</button>
+    <script>
+    var circles = document.getElementsByClassName('circles')[0];
+
+    // demo1:
+    // 实现把最后的元素节点插入到最前边
+    function go() {
+        circles.insertBefore(circles.lastElementChild, circles.firstElementChild);
+    }
+
+    function back() {
+        circles.insertBefore(circles.firstElementChild, null);
+        // circles.appendChild(circles.firstElementChild);
+    }
+
+    // demo2：
+    // replaceChild() 替换掉指定节点
+    function replace() {
+        var node = document.createElement('div');
+        node.classList.add('circle');
+        node.textContent = 'New';
+        circles.replaceChild(node, circles.lastElementChild);
+    }
+
+    // demo3:
+    // hasChildNodes() 判断一个节点是否有子节点，另外可以通过 childNodes.length 来判断
+    console.log('demo 3:', circles.firstElementChild.hasChildNodes())
+
+    // demo4:
+    // cloneNode() 参数代表是否深复制，深复制连同子节点一起复制
+
+    // demo5(update):
+    // 最新版 Chrome 会将 document.doctype 作为 document 的子节点
+
+    // demo6:
+    console.log('demo 6:', document.domain);
+
+    // demo7(update):
+    // document.implementation.hasFeature('CSS2.0', '2.0') 貌似在 Chrome 与 Firefox 上无效
+    console.log('demo7:', document.implementation.hasFeature('C2', '2.0'))
+    </script>
+</body>
+</html>

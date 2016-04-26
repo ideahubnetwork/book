@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM变化</title>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+        <path fill="none" d="M 76 70.5 L 790 70.5" stroke="#888" stroke-width="3" opacity="1"></path>
+    </svg>
+    <iframe id="frame" frameborder="0"></iframe>
+    <script>
+    var svg = document.getElementsByTagName('svg')[0]
+    var path = document.getElementsByTagName('path')[0]
+    var box = document.getElementsByClassName('box')[0]
+    var box2 = document.getElementsByClassName('box')[1]
+    var frame = document.getElementById('frame')
+
+    // demo 0(update):
+    // document.implementation 貌似不起作用了
+    console.log(document.implementation.hasFeature('Core', '3.0'));
+
+    // demo 1:
+    // namespaceURI
+    console.log('demo 1', svg.namespaceURI)
+    console.log('demo 1', box.namespaceURI)
+
+    // demo 2:
+    // document.defaultView 
+    console.log(document.defaultView)
+
+    // demo 3:
+    console.log('ownerDocument:', box.ownerDocument)
+    console.log('ownerSVGElement:', path.ownerSVGElement)
+
+    // demo 4:
+    var doc = document.implementation.createHTMLDocument('New Document')
+    console.log(doc)
+
+    // demo 5(update):
+    // document.body 无 isSupported 方法，并且 hasFeature 方法失效
+    // document.body.isSupported('HTML', '2.0')
+
+    // demo 6(update):
+    // 火狐只支持 document.equalNode ，不支持 sameNode
+    console.log('equalNode:', box2.isEqualNode(box))
+    // console.log('sameNode:', box2.isSameNode(box))
+
+    // demo 7(update):
+    // 火狐与Chrome均不支持 element.setUserData 与 element.getUserData
+
+    // demo 8
+    // contentDocument / contentWindow.document
+    </script>
+</body>
+</html>

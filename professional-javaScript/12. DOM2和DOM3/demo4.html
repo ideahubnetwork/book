@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element</title>
+    <style>
+    body {
+        margin: 0;
+    }
+
+    .div1 {
+        position: relative;
+        border: 50px #aaa solid;
+        margin: 50px;
+        left: 70px;
+        top: 70px;
+        width: 70px;
+        height: 70px;
+        background-color: #ccc;
+    }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        
+    </div>
+    <script>
+    var div1 = document.getElementsByClassName('div1')[0];
+
+    // demo 1:
+    // clientWidth: padding + width
+    // clientTop: border
+    // offsetWidth: border + padding + width
+    // offsetHeight: margin + position
+
+    // demo 2:
+    function getElementLeft(el) {
+        var left = 0;
+        while (el !== null) {
+            left += el.offsetLeft;
+            el = el.offsetParent;
+        }
+        return left;
+    }
+
+    console.log(getElementLeft(div1))
+
+    // demo 3:
+    // Firefox: document.documentElement.scrollTop
+    // Chrome: document.body.scrollTop
+
+    // demo 4:
+    var rect = div1.getBoundingClientRect()
+    console.log(rect)
+    </script>
+</body>
+</html>

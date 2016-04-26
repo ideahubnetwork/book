@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traversal API</title>
+</head>
+<body>
+    <h1>Traversal</h1>
+    <div class="list">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <script>
+    // demo 1:
+    // NodeIterator
+    function CounterByIterator() {
+        var iterator = document.createNodeIterator(document.documentElement, NodeFilter.SHOW_ELEMENT, null);
+        var node = iterator.nextNode();
+        var dict = {}
+        while (node !== null) {
+            var tagname = node.tagName.toLowerCase();
+            if (! (tagname in dict)) {
+                dict[tagname] = 1
+            } else {
+                dict[tagname]++;
+            }
+            node = iterator.nextNode()
+        }
+        return dict;
+    }
+
+    // demo 2:
+    // getElementsByTagName
+    function CounterByElements() {
+        var tags = document.getElementsByTagName('*');
+        var dict = {};
+        [].forEach.call(tags, tag => {
+            var tagname = tag.tagName.toLowerCase()
+            if (!dict.hasOwnProperty(tagname)) {
+                dict[tagname] = 1
+            } else {
+                dict[tagname]++;
+            }
+        }) 
+        return dict;
+    }
+    
+    // demo 3:
+    // DFS children
+    function CounterByChildren(element, dict) {
+        var childs = element.children;
+        var len = childs.length;
+
+        for (var i=0; i<len; i++) {
+            var tagname = childs[i].tagName.toLowerCase();
+            if (!dict.hasOwnProperty(tagname)) {
+                dict[tagname] = 1;
+            } else {
+                dict[tagname]++;
+            }
+            CounterByChildren(childs[i], dict)
+        }
+    }
+
+    // demo 4:
+    // DFS 2 childNodes
+    function CounterByChildNodes(element, dict) {
+        var childs = element.childNodes;
+        var len = childs.length;
+
+        for (var i=0; i<len; i++) {
+            var node = childs[i];
+            if (node.nodeType === 1) {
+                var tagname = node.tagName;
+                if (dict.hasOwnProperty(tagname)) {
+                    dict[tagname]++
+                } else {
+                    dict[tagname] = 1;
+                }
+                if (node.hasChildNodes()) {
+                    CounterByChildNodes(node, dict)
+                }
+            }
+        }
+    }
+
+    function profile(func, arguments, times) {
+        console.time(func.name)
+        for (var i=0; i<times; i++) {
+            func(...arguments)
+        }
+        console.timeEnd(func.name)
+    }
+
+    profile(CounterByElements, [], 10000)
+    profile(CounterByIterator, [], 10000)
+    profile(CounterByChildNodes, [document, {}], 10000)
+    profile(CounterByChildren, [document, {}], 10000)
+
+    </script>
+</body>
+</html>
